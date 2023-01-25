@@ -19,8 +19,7 @@ jobs:
           use-public-rspm: true
       - name: Install dependencies
         run: |
-         install.packages(c("shiny","ggplot2","xlsx","readxl","tidyverse","dplyr","shinyWidgets",
-         "shinythemes","ggpubr","see","kableExtra","DT","shinysky","labelled","ggrepel","shinymanager","lubridate"))          
+         install.packages(c("shiny","ggplot2","xlsx","readxl","tidyverse","dplyr","shinyWidgets","shinythemes","ggpubr","see","kableExtra","DT","shinysky","labelled","ggrepel","shinymanager","lubridate"))          
         shell: Rscript {0}
       - name: Make data
         run: |
