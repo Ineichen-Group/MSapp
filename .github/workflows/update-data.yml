@@ -4,7 +4,9 @@ on:
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
-  obs:
+
+
+jobs:
   update:
     runs-on: windows-latest
     env:
@@ -19,6 +21,18 @@ on:
         run: |
          install.packages(c("shiny","ggplot2","xlsx","readxl","tidyverse","dplyr","shinyWidgets",
          "shinythemes","ggpubr","see","kableExtra","DT","shinysky","labelled","ggrepel","shinymanager","lubridate"))          
+        shell: Rscript {0}
+      - name: Make data
+        run: |
+                    source("make_data.R")
+        shell: Rscript {0}
+      - name: Mining intervention
+        run: |
+                    source("mining_intervention.R")
+        shell: Rscript {0}
+      - name: Data update
+        run: |
+                    source("data_update.R")
         shell: Rscript {0}
       - name: Commit files
         run: |
