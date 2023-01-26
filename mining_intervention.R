@@ -1,3 +1,18 @@
+library(shiny)
+library(ggplot2)
+library(xlsx)
+library(readxl)
+library(dplyr)
+library(shinyWidgets)
+library(shinythemes)
+library(ggpubr)
+library(see)
+library(DT)
+library(shinysky)
+library(labelled)
+library(ggrepel)
+library(lubridate)
+
 # uploading dictionary manually curated
 
 dictionary<-read_excel("Druglist.xlsx")
