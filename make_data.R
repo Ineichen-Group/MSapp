@@ -13,6 +13,7 @@ library(labelled)
 library(tidyr)
 library(ggrepel)
 library(lubridate)
+library(curl)
 library(data.table)
 
 # download all the records matching our search
