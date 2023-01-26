@@ -17,6 +17,7 @@ library(curl)
 library(data.table)
 
 # download all the records matching our search
+
 URL1a<-"https://clinicaltrials.gov/api/query/study_fields?expr=AREA%5BCondition%5D%22multiple+sclerosis%22+AND+AREA%5BStudyType%5DInterventional&fields=NCTId%2COfficialTitle%2CBriefTitle%2CPrimaryOutcomeMeasure%2CPrimaryOutcomeDescription%2CSecondaryOutcomeMeasure%2CSecondaryOutcomeDescription%2CStdAge%2CMaximumAge%2CMinimumAge%2CGender%2CDetailedDescription&min_rnk="
 URL1b<-"&max_rnk="
 URL1c<-"&fmt=csv"
@@ -69,7 +70,7 @@ df_clean<-empty_df%>%
   filter(InterventionType=="Drug"|InterventionType=="Biological")
 
 #uploading our existing table
-complete_df_NCT_drugs <- read_excel("complete_df_NCT_drugs.xlsx")
+complete_df_NCT_drugs <- read_excel("complete_df_NCT_drugs.xlsx") #1135 rows
 
 # retreiving new records (i.e. new NCTIds) from the newly downloaded (and cleaned) data frame
 anti_match_NCTs<-
@@ -78,7 +79,8 @@ anti_match_NCTs<-
 
 # uploading dictionary manually curated
 
-dictionary<-read_excel("Druglist.xlsx")
+dictionary<-read_excel("Druglist.xlsx") %>% 
+  rename(Of_Drug_Name=Name)
 
 # cleaning the dictionary
 
@@ -121,6 +123,8 @@ for(i in 1:index_patter){
   empT<-rbind(empT,df) %>% unique
 }
 
+#append additional information to the original table 
+complete_df_NCT_drugs<-merge(complete_df_NCT_drugs,dictionary,by="Of_Drug_Name")
 
 #new table to append to the data set 
 
