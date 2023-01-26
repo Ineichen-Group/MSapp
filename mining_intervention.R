@@ -12,6 +12,7 @@ library(shinysky)
 library(labelled)
 library(ggrepel)
 library(lubridate)
+library(curl)
 library(data.table)
 
 # uploading dictionary manually curated
