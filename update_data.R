@@ -26,7 +26,7 @@ complete_df_NCT_drugs <- read_excel("complete_df_NCT_drugs.xlsx")
 # retreiving new records (i.e. new NCTIds) from the newly downloaded (and cleaned) data frame
 anti_match_NCTs<-
   anti_join(df_clean %>% select(NCTId),complete_df_NCT_drugs%>% select(NCTId)) %>% unique() %>% 
-  merge(.,empty_df,by="NCTId")
+  merge(.,df_clean,by="NCTId")
 
 # uploading dictionary manually curated
 
