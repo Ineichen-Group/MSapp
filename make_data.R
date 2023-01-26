@@ -13,6 +13,7 @@ library(labelled)
 library(tidyr)
 library(ggrepel)
 library(lubridate)
+library(data.table)
 
 # download all the records matching our search
 URL1a<-"https://clinicaltrials.gov/api/query/study_fields?expr=AREA%5BCondition%5D%22multiple+sclerosis%22+AND+AREA%5BStudyType%5DInterventional&fields=NCTId%2COfficialTitle%2CBriefTitle%2CPrimaryOutcomeMeasure%2CPrimaryOutcomeDescription%2CSecondaryOutcomeMeasure%2CSecondaryOutcomeDescription%2CStdAge%2CMaximumAge%2CMinimumAge%2CGender%2CDetailedDescription&min_rnk="
