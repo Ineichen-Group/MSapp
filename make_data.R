@@ -54,7 +54,7 @@ Count_interventions <- data.frame(count=str_count(empty_df$InterventionName,"[|]
 max_interventions<-max(Count_interventions)+1  
 
 df_clean<-empty_df%>% 
-  select(NCTId,InterventionName,InterventionType) %>% 
+  select(NCTId,InterventionName,InterventionType,BriefTitle) %>% 
   mutate(across(starts_with("Intervention"), gsub, pattern = "[|]", replacement = "_"))%>% 
   separate(InterventionName,into=paste0("pivinterv_name",1:max_interventions),sep="_") %>% 
   separate(InterventionType,into=paste0("pivinterv_type",1:max_interventions),sep=",") %>% 
