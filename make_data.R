@@ -1,5 +1,19 @@
-# download all the records matching our search
+library(shiny)
+library(ggplot2)
+library(xlsx)
+library(readxl)
+library(dplyr)
+library(shinyWidgets)
+library(shinythemes)
+library(ggpubr)
+library(see)
+library(DT)
+library(shinysky)
+library(labelled)
+library(ggrepel)
+library(lubridate)
 
+# download all the records matching our search
 URL1a<-"https://clinicaltrials.gov/api/query/study_fields?expr=AREA%5BCondition%5D%22multiple+sclerosis%22+AND+AREA%5BStudyType%5DInterventional&fields=NCTId%2COfficialTitle%2CBriefTitle%2CPrimaryOutcomeMeasure%2CPrimaryOutcomeDescription%2CSecondaryOutcomeMeasure%2CSecondaryOutcomeDescription%2CStdAge%2CMaximumAge%2CMinimumAge%2CGender%2CDetailedDescription&min_rnk="
 URL1b<-"&max_rnk="
 URL1c<-"&fmt=csv"
