@@ -25,14 +25,6 @@ jobs:
         run: |
                     source("make_data.R")
         shell: Rscript {0}
-      - name: Mining intervention
-        run: |
-                    source("mining_intervention.R")
-        shell: Rscript {0}
-      - name: Data update
-        run: |
-                    source("data_update.R")
-        shell: Rscript {0}
       - name: Commit files
         run: |
           git config --local user.email "actions@github.com"
