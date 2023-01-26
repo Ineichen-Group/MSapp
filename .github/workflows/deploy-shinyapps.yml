@@ -1,4 +1,4 @@
-name: Run on push master, main
+name: Deploy app
 
 # Controls when the action will run. 
 on:
