@@ -87,7 +87,7 @@ mined_table<-empT %>%
 
 # appending to the original dataset
 
-complete_df_NCT_drugs<-bind_rows(complete_df_NCT_drugs, mined_table) %>% 
+bind_rows(complete_df_NCT_drugs, mined_table) %>% 
   mutate(date=Sys.Date()) %>% 
   unique() %>%
   write.xlsx("complete_df_NCT_drugs.xlsx")
