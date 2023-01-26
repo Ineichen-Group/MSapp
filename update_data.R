@@ -18,7 +18,7 @@ library(data.table)
 
 #update the data
 #uploading the cleaned new data
-df_clean<-read_excel(df_clean,"trials_clean.xlsx")
+df_clean<-read_excel("trials_clean.xlsx")
 
 #uploading our existing table
 complete_df_NCT_drugs <- read_excel("complete_df_NCT_drugs.xlsx")
