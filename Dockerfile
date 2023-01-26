@@ -7,4 +7,4 @@ COPY trials_clean.xlsx trials_clean.xlsx
 COPY complete_df_NCT_drugs.xlsx complete_df_NCT_drugs.xlsx
 COPY Druglist.xlsx Druglist.xlsx
 COPY deploy.R deploy.R
-CMD Rscript make_data.R
+CMD Rscript deploy.R
