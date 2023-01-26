@@ -8,10 +8,12 @@ library(shinythemes)
 library(ggpubr)
 library(see)
 library(DT)
-library(shinysky)
+library(stringr)
+library(tidyr)
 library(labelled)
 library(ggrepel)
 library(lubridate)
+library(curl)
 library(data.table)
 
 # appending to the original dataset
