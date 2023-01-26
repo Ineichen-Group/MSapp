@@ -17,7 +17,7 @@ library(curl)
 library(data.table)
 
 
-complete_df_NCT_drugs <- read_excel(complete_df_NCT_drugs.xlsx) %>% mutate(date=Sys.time())
+complete_df_NCT_drugs <- read_excel("complete_df_NCT_drugs.xlsx") %>% mutate(date=Sys.time())
 complete_df_NCT_drugs$Gender<-as.factor(complete_df_NCT_drugs$Gender)
 complete_df_NCT_drugs$StdAge<-as.factor(complete_df_NCT_drugs$StdAge)
 complete_df_NCT_drugs$Phase<-as.factor(complete_df_NCT_drugs$Phase)
