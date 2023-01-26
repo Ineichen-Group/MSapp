@@ -129,3 +129,16 @@ mined_table<-empT %>%
   unique() %>% 
   merge(.,dictionary_pivot,by.x="replace",by.y="lower_synonims",all.x=T)%>% 
   mutate(URL=paste0("https://clinicaltrials.gov/ct2/show/",NCTId,"?term=",NCTId,"&draw=2&rank=1"))
+
+# appending to the original dataset
+
+bind_rows(complete_df_NCT_drugs, mined_table) %>% 
+  mutate(date=Sys.Date()) %>% 
+  unique() %>% 
+  write.xlsx("complete_df_NCT_drugs.xlsx")
+
+# table for unmined data
+
+unmined_table<- empT %>% 
+  filter(is.na(replace)) %>% 
+  write.xlsx("unmined_interventions.xlsx") 
