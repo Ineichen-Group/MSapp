@@ -87,10 +87,9 @@ mined_table<-empT %>%
 
 # appending to the original dataset
 
-bind_rows(complete_df_NCT_drugs, mined_table) %>% 
+complete_df_NCT_drugs<-bind_rows(complete_df_NCT_drugs, mined_table) %>% 
   mutate(date=Sys.Date()) %>% 
-  unique() %>% 
-  write.xlsx("complete_df_NCT_drugs.xlsx")
+  unique()
 
 # table for unmined data
 
@@ -100,7 +99,7 @@ unmined_table<- empT %>%
 
 ###################
 
-complete_df_NCT_drugs <- read_excel("complete_df_NCT_drugs.xlsx") %>% mutate(date=Sys.time())
+complete_df_NCT_drugs <- complete_df_NCT_drugs %>% mutate(date=Sys.time())
 complete_df_NCT_drugs$Gender<-as.factor(complete_df_NCT_drugs$Gender)
 complete_df_NCT_drugs$StdAge<-as.factor(complete_df_NCT_drugs$StdAge)
 complete_df_NCT_drugs$Phase<-as.factor(complete_df_NCT_drugs$Phase)
