@@ -69,8 +69,11 @@ df_clean<-empty_df%>%
   rename(InterventionName=name,InterventionType=type) %>% 
   filter(InterventionType=="Drug"|InterventionType=="Biological")
 
+#saving the cleaned new data
+write.xlsx(df_clean,"trials_clean.xlsx")
+
 #uploading our existing table
-complete_df_NCT_drugs <- read_excel("complete_df_NCT_drugs.xlsx") #1135 rows
+complete_df_NCT_drugs <- read_excel("complete_df_NCT_drugs.xlsx")
 
 # retreiving new records (i.e. new NCTIds) from the newly downloaded (and cleaned) data frame
 anti_match_NCTs<-
