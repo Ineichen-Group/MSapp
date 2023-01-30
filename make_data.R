@@ -66,14 +66,41 @@ df_clean<-empty_df%>%
   pivot_wider(names_from=Category2,values_from=pivinterv) %>% 
   drop_na(name) %>% 
   fill(type)%>% 
-  rename(InterventionName=name,InterventionType=type) %>% 
-  filter(InterventionType=="Drug"|InterventionType=="Biological")
+  rename(InterventionName=name,InterventionType=type)
+  # filter(InterventionType=="Drug"|InterventionType=="Biological")
 
 #saving the cleaned new data
 write.xlsx(df_clean,"trials_clean.xlsx")
 
 #uploading our existing table
-complete_df_NCT_drugs <- read_excel("complete_df_NCT_drugs.xlsx")
+complete_df_NCT_drugs <- read_excel("complete_df_NCT_drugs.xlsx") %>% 
+  unique() %>% 
+  select("Of_Drug_Name",
+         "NCTId",
+         "OfficialTitle",
+         "BriefTitle",
+         "PrimaryOutcomeMeasure",
+         "PrimaryOutcomeDescription",
+         "SecondaryOutcomeMeasure",
+         "SecondaryOutcomeDescription",
+         "StdAge",
+         "MaximumAge",
+         "MinimumAge",
+         "Gender",
+         "DetailedDescription",
+         "BriefSummary",
+         "Condition",
+         "InterventionName",
+         "InterventionType",
+         "Phase",
+         "OverallStatus",
+         "StudyType",
+         "LocationCountry",
+         "StudyFirstPostDate",
+         "LastUpdatePostDate",
+         "PrimaryCompletionDate",
+         "ConditionMeshTerm",
+         "URL")
 
 # retreiving new records (i.e. new NCTIds) from the newly downloaded (and cleaned) data frame
 anti_match_NCTs<-
@@ -140,12 +167,10 @@ mined_table<-empT %>%
 # appending to the original dataset
 
 bind_rows(complete_df_NCT_drugs, mined_table) %>% 
-  mutate(date=Sys.Date()) %>% 
-  unique() %>% 
   write.xlsx("complete_df_NCT_drugs.xlsx")
 
 # table for unmined data
 
-unmined_table<- empT %>% 
+empT %>% 
   filter(is.na(replace)) %>% 
   write.xlsx("unmined_interventions.xlsx") 
