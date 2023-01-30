@@ -136,7 +136,6 @@ empT<-data.frame()
 index_patter<-max(as.numeric(names(list)))
 
 #mining for the intervention in InterventionName and Brief title
-
 for(i in 1:index_patter){
   data<-list[[i]]$lower_synonims
   pattern<-paste0(data, collapse = "|")
@@ -152,6 +151,7 @@ for(i in 1:index_patter){
     unnest_longer(replace)
   empT<-rbind(empT,df) %>% unique
 }
+
 
 #append additional information to the original table 
 complete_df_NCT_drugs<-merge(complete_df_NCT_drugs,dictionary,by="Of_Drug_Name")
@@ -172,5 +172,7 @@ bind_rows(complete_df_NCT_drugs, mined_table) %>%
 # table for unmined data
 
 empT %>% 
-  filter(is.na(replace)) %>% 
+  select(NCTId) %>% 
+  anti_join(.,mined_table %>% select(NCTId)) %>% 
+  merge(.,empT %>% filter(is.na(replace)))%>% unique() %>% 
   write.xlsx("unmined_interventions.xlsx") 
